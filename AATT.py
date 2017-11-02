@@ -34,7 +34,6 @@ class Main(QMainWindow,Ui_Form):
 
         self.ui.comboBox.activated.connect(self.wait_time)
 
-
     def setdevices(self):
         '''
         写入设备名
