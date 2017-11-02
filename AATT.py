@@ -32,7 +32,6 @@ class Main(QMainWindow,Ui_Form):
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.slotadd)
 
-
         self.ui.comboBox.activated.connect(self.wait_time)
 
 
