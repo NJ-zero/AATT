@@ -25,11 +25,13 @@ class Main(QMainWindow,Ui_Form):
         self.ui.checkdev.clicked.connect(self.setdevices)
         self.ui.getpackage.clicked.connect(self.setpackage)
 
+
         self.ui.start.clicked.connect(self.startTimer)
         self.ui.end.clicked.connect(self.endTimer)
         #初始化一个定时器
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.slotadd)
+
 
         self.ui.comboBox.activated.connect(self.wait_time)
 
@@ -50,6 +52,10 @@ class Main(QMainWindow,Ui_Form):
         self.ui.activity.setText(adb.getactivity())
 
     def wait_time(self):
+        '''
+        设置更新时间
+        :return:
+        '''
         timetext = self.ui.comboBox.currentText()
         wait_time = int(timetext) * 1000
         print(wait_time)
@@ -57,7 +63,7 @@ class Main(QMainWindow,Ui_Form):
 
     def slotadd(self):
         '''
-        往mem写数据
+        往mem、cpu、flow写数据
         :return:
         '''
         memlist = adb.mem()
