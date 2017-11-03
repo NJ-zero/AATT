@@ -280,7 +280,7 @@
   <widget class="QLabel" name="label_3">
    <property name="geometry">
     <rect>
-     <x>836</x>
+     <x>810</x>
      <y>10</y>
      <width>48</width>
      <height>16</height>
@@ -299,7 +299,7 @@
   <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
-     <x>920</x>
+     <x>900</x>
      <y>10</y>
      <width>71</width>
      <height>20</height>
@@ -439,7 +439,7 @@
   <widget class="QPushButton" name="start">
    <property name="geometry">
     <rect>
-     <x>839</x>
+     <x>809</x>
      <y>54</y>
      <width>75</width>
      <height>23</height>
@@ -458,7 +458,7 @@
   <widget class="QPushButton" name="end">
    <property name="geometry">
     <rect>
-     <x>920</x>
+     <x>900</x>
      <y>54</y>
      <width>75</width>
      <height>23</height>
@@ -474,7 +474,56 @@
     <string>结束</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="close">
+   <property name="geometry">
+    <rect>
+     <x>1010</x>
+     <y>10</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cleartext">
+   <property name="geometry">
+    <rect>
+     <x>1010</x>
+     <y>54</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>清除</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>close</sender>
+   <signal>clicked()</signal>
+   <receiver>Form</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1050</x>
+     <y>18</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1107</x>
+     <y>35</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
