@@ -25,7 +25,6 @@ class Main(QMainWindow,Ui_Form):
         self.ui.checkdev.clicked.connect(self.setdevices)
         self.ui.getpackage.clicked.connect(self.setpackage)
 
-
         self.ui.start.clicked.connect(self.startTimer)
         self.ui.end.clicked.connect(self.endTimer)
         #初始化一个定时器
