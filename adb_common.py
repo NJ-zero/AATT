@@ -6,23 +6,40 @@ import subprocess
 import re
 
 
-
+si = subprocess.STARTUPINFO()
+si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
 
 dev_list =[]
 def get_devices():
-    rt = os.popen('adb devices').readlines()  # os.popen()执行系统命令并返回执行后的结果
-    n = len(rt) - 2
+    # rt = os.popen('adb devices').readlines()  # os.popen()执行系统命令并返回执行后的结果
+    # n = len(rt) - 2
     # print(rt)
     # print("当前已连接待测手机数为：" + str(n))
-    if len(rt)-2 == 1:
-        for i in range(n):
-            nPos = rt[i + 1].index("\t")
-            dev = rt[i + 1][:nPos]
-            dev_list.append(dev)
-            # print(dev_list[0])
-        return dev_list[0]
+    # if len(rt)-2 == 1:
+    #     for i in range(n):
+    #         nPos = rt[i + 1].index("\t")
+    #         dev = rt[i + 1][:nPos]
+    #         dev_list.append(dev)
+    #         print(dev_list[0])
+    #     return dev_list[0]
+    # else:
+    #     return 'No device found'
+    devices = []
+    result = subprocess.Popen("adb devices", shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
+    # print(result[1].decode())
+    print(len(result))
+    if len(result)-2 == 1:
+        for line in result[1:]:
+            devices.append(line.strip().decode())
+        print(devices[0].split()[0])
+        return devices[0].split()[0]
     else:
+        print('No device')
         return 'No device found'
+
+
+    # return devices[0]
+
 
 def getpackagename():
     pattern = re.compile(r"[a-zA-Z0-9\.]+/.[a-zA-Z0-9\.]+")
@@ -45,7 +62,7 @@ def getactivity():
 mem_list = []
 def mem():
     cmd = 'adb -s '+ get_devices() + ' shell dumpsys meminfo ' + getpackagename()
-    # print (cmd)
+    print (cmd)
     men_s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     for info in men_s:
         if len(info.split())>0 and info.split()[0].decode() == "TOTAL":
@@ -132,9 +149,9 @@ def getflow():
 
 
 if __name__ == "__main__":
-    # get_devices()
-    # getpackagename()
-    # mem()
+    get_devices()
+    getpackagename()
+    mem()
     # cpu()
     # pid()
     # uid()
@@ -142,4 +159,4 @@ if __name__ == "__main__":
     # for i in range(20):
     #     flow()
 
-    getflow()
+    # getflow()
