@@ -7,7 +7,7 @@
 ##### V1.0.0版本说明
 主界面如下所示：
 
-![image](https://github.com/NJ-zero/AATT/raw/master/jiemian.png)
+![image](https://github.com/NJ-zero/AATT/raw/master/jiemian102.png)
 
 点击检查设备---显示设备SN
 
