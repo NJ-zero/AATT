@@ -20,18 +20,21 @@ class Main(QMainWindow,Ui_Form):
         super(Main,self).__init__(parent)
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.setWindowTitle('Waiqin365-AATT-V1.0.0')
+        self.setWindowTitle('Waiqin365-AATT-V1.0.2')
 
         self.ui.checkdev.clicked.connect(self.setdevices)
         self.ui.getpackage.clicked.connect(self.setpackage)
         self.ui.cleartext.clicked.connect(self.clearall)
-        self.ui.start.clicked.connect(self.startTimer)
-        self.ui.end.clicked.connect(self.endTimer)
+
+        self.ui.comboBox.activated.connect(self.wait_time)
+
         #初始化一个定时器
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.slotadd)
+        self.ui.start.clicked.connect(self.startTimer)
+        self.ui.end.clicked.connect(self.endTimer)
 
-        self.ui.comboBox.activated.connect(self.wait_time)
+
 
     def setdevices(self):
         '''
@@ -70,14 +73,18 @@ class Main(QMainWindow,Ui_Form):
         self.ui.mem.append(mem)
         self.ui.cpu.append(cpu)
         (recevice,send,allflow)=adb.getflow()
-        receflow = '下载流量：' + str(int(recevice[-1]/1024))
-        sendflow = '上传流量：' + str(int(send[-1]/1024))
-        alladd = '总流量：' + str(int(allflow[-1]/1024))
+        receflow = '下载流量：' + str(int(recevice[-1]))
+        sendflow = '上传流量：' + str(int(send[-1]))
+        alladd = '总流量：' + str(int(allflow[-1]))
         self.ui.recv.append(receflow)
         self.ui.send.append(sendflow)
         self.ui.all.append(alladd)
 
     def startTimer(self):
+        '''
+        设置时间间隔并启动定时器
+        :return:
+        '''
         print(self.ui.comboBox.currentText())
         self.timer.start(self.wait_time())
         self.ui.start.setEnabled(False)
@@ -88,6 +95,10 @@ class Main(QMainWindow,Ui_Form):
         self.ui.start.setEnabled(True)
 
     def clearall(self):
+        '''
+        清屏
+        :return:
+        '''
         self.ui.mem.clear()
         self.ui.cpu.clear()
         self.ui.recv.clear()
