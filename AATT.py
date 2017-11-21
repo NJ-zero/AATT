@@ -6,11 +6,11 @@ import random,time
 import matplotlib
 import re,subprocess,os
 
-matplotlib.use("Qt5Agg")
+
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-import matplotlib.pyplot as plt
+
 from aatt_pyqt import Ui_Form
 import adb_common as adb
 
@@ -24,7 +24,7 @@ class Main(QMainWindow,Ui_Form):
 
         self.ui.checkdev.clicked.connect(self.setdevices)
         self.ui.getpackage.clicked.connect(self.setpackage)
-
+        self.ui.cleartext.clicked.connect(self.clearall)
         self.ui.start.clicked.connect(self.startTimer)
         self.ui.end.clicked.connect(self.endTimer)
         #初始化一个定时器
@@ -77,7 +77,6 @@ class Main(QMainWindow,Ui_Form):
         self.ui.send.append(sendflow)
         self.ui.all.append(alladd)
 
-
     def startTimer(self):
         print(self.ui.comboBox.currentText())
         self.timer.start(self.wait_time())
@@ -88,7 +87,12 @@ class Main(QMainWindow,Ui_Form):
         self.timer.stop()
         self.ui.start.setEnabled(True)
 
-
+    def clearall(self):
+        self.ui.mem.clear()
+        self.ui.cpu.clear()
+        self.ui.recv.clear()
+        self.ui.send.clear()
+        self.ui.all.clear()
 
 if __name__ == "__main__":
     import sys
