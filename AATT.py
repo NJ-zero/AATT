@@ -6,11 +6,11 @@ import random,time
 import matplotlib
 import re,subprocess,os
 
-
+matplotlib.use("Qt5Agg")
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
-
+import matplotlib.pyplot as plt
 from aatt_pyqt import Ui_Form
 import adb_common as adb
 
@@ -20,7 +20,7 @@ class Main(QMainWindow,Ui_Form):
         super(Main,self).__init__(parent)
         self.ui = Ui_Form()
         self.ui.setupUi(self)
-        self.setWindowTitle('Waiqin365-AATT-V1.0.2')
+        self.setWindowTitle('Waiqin365-AATT-V1.1.0')
 
         self.ui.checkdev.clicked.connect(self.setdevices)
         self.ui.getpackage.clicked.connect(self.setpackage)
@@ -34,6 +34,12 @@ class Main(QMainWindow,Ui_Form):
         self.ui.start.clicked.connect(self.startTimer)
         self.ui.end.clicked.connect(self.endTimer)
 
+        self.ui.mem_plot.setVisible(False)
+
+    @pyqtSlot()
+    def on_pushButton_clicked(self):
+        self.ui.mem_plot.setVisible(True)
+        self.ui.mem_plot.mpl.start_static_plot()
 
 
     def setdevices(self):
