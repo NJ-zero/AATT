@@ -66,7 +66,7 @@ def mem():
     men_s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     for info in men_s:
         if len(info.split())>0 and info.split()[0].decode() == "TOTAL":
-            mem_list.append(int(info.split()[1].decode()))
+            mem_list.append((int(info.split()[1].decode())//1024))
             print(str(info.split()[1].decode()))
             print(mem_list)
             # men_list = str(info.split()[1].decode())
@@ -136,8 +136,8 @@ def getflow():
     allflow = []
     print(len(receive))
     for i in range(len(receive)-1):
-        recev.append(receive[i+1] - receive[i])
-        send.append(sendflow[i+1] - sendflow[i])
+        recev.append((int(receive[i+1]) - int(receive[i]))//1024)
+        send.append((int(sendflow[i+1]) - int(sendflow[i]))//1024)
         allflow.append(recev[i]+send[i])
     print(recev,send,allflow)
     return recev,send,allflow
