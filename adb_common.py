@@ -62,7 +62,6 @@ def getactivity():
 mem_list = []
 def mem():
     cmd = 'adb -s '+ get_devices() + ' shell dumpsys meminfo ' + getpackagename()
-    print (cmd)
     men_s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     for info in men_s:
         if len(info.split())>0 and info.split()[0].decode() == "TOTAL":
@@ -70,6 +69,7 @@ def mem():
             print(str(info.split()[1].decode()))
             print(mem_list)
             # men_list = str(info.split()[1].decode())
+
     return mem_list
 
 #获取cpu
@@ -141,6 +141,8 @@ def getflow():
         allflow.append(recev[i]+send[i])
     print(recev,send,allflow)
     return recev,send,allflow
+
+
 
 
 if __name__ == "__main__":
