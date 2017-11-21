@@ -143,9 +143,6 @@ def getflow():
     return recev,send,allflow
 
 
-
-
-
 if __name__ == "__main__":
     get_devices()
     getpackagename()
