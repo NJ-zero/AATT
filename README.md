@@ -4,11 +4,11 @@
 1.windows + python3 + PyQt5
 性能数据采集主要基于常用的adb 命令
 
-##### V1.0.0版本说明
-主界面如下所示：
+#### 主界面：
 
 ![image](https://github.com/NJ-zero/AATT/raw/master/jiemian102.png)
 
+##### V1.0.0版本说明
 点击检查设备---显示设备SN
 
 打开待测应用，获取packagename 和 activity
@@ -29,3 +29,7 @@
 增加关闭和清屏功能
 
 点击关闭，关闭窗口；点击清除，清除写入的mem/cpu/flow等信息
+
+##### V1.1.0 优化
+
+增加图表显示，测试结束后，点击图表生成三张图
