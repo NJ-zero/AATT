@@ -37,9 +37,7 @@ def get_devices():
         print('No device')
         return 'No device found'
 
-
     # return devices[0]
-
 
 def getpackagename():
     pattern = re.compile(r"[a-zA-Z0-9\.]+/.[a-zA-Z0-9\.]+")
